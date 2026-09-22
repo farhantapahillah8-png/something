@@ -1,0 +1,961 @@
+```html
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Our Story ❤️</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #0d0710;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 18px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(13, 7, 16, 0.75);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #ff5c9a;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 28px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            transition: .3s;
+        }
+
+        nav a:hover {
+            color: #ff5c9a;
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            padding: 100px 20px;
+            background:
+                radial-gradient(circle at top, #5c183e, transparent 45%),
+                linear-gradient(135deg, #0d0710, #260d25);
+        }
+
+        .hero-content {
+            max-width: 850px;
+            z-index: 2;
+        }
+
+        .hero small {
+            color: #ff8db6;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            font-size: clamp(50px, 9vw, 100px);
+            margin: 20px 0;
+        }
+
+        .hero h1 span {
+            color: #ff5c9a;
+        }
+
+        .hero p {
+            color: #ddd;
+            font-size: 18px;
+            line-height: 1.8;
+            max-width: 650px;
+            margin: auto;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 14px 28px;
+            background: #ff4f91;
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            transition: .3s;
+            border: none;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 79, 145, .3);
+        }
+
+        /* =========================
+           SECTION
+        ========================= */
+
+        section {
+            padding: 100px 8%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title small {
+            color: #ff5c9a;
+            letter-spacing: 3px;
+        }
+
+        .section-title h2 {
+            font-size: 40px;
+            margin-top: 10px;
+        }
+
+        /* =========================
+           ABOUT
+        ========================= */
+
+        .about {
+            background: #130b16;
+        }
+
+        .about-container {
+            max-width: 1000px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-image {
+            height: 450px;
+            border-radius: 25px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #5e1e45, #1e1023);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 70px;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .about-text h3 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .about-text p {
+            color: #ccc;
+            line-height: 1.9;
+            margin-bottom: 15px;
+        }
+
+        /* =========================
+           MEMORY CARDS
+        ========================= */
+
+        .memories {
+            background: #0d0710;
+        }
+
+        .memory-grid {
+            max-width: 1100px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .memory-card {
+            background: #19101d;
+            border-radius: 18px;
+            overflow: hidden;
+            transition: .3s;
+            border: 1px solid rgba(255,255,255,.08);
+        }
+
+        .memory-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .memory-photo {
+            height: 250px;
+            background: linear-gradient(135deg, #65234e, #211225);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 50px;
+        }
+
+        .memory-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .memory-info {
+            padding: 22px;
+        }
+
+        .memory-info h3 {
+            margin-bottom: 10px;
+        }
+
+        .memory-info p {
+            color: #aaa;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        /* =========================
+           TIMELINE
+        ========================= */
+
+        .timeline-section {
+            background: #130b16;
+        }
+
+        .timeline {
+            max-width: 800px;
+            margin: auto;
+            border-left: 2px solid #ff4f91;
+            padding-left: 30px;
+        }
+
+        .timeline-item {
+            margin-bottom: 45px;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: "❤";
+            position: absolute;
+            left: -49px;
+            top: 0;
+            width: 35px;
+            height: 35px;
+            background: #ff4f91;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 14px;
+        }
+
+        .timeline-item span {
+            color: #ff76a8;
+            font-size: 14px;
+        }
+
+        .timeline-item h3 {
+            margin: 8px 0;
+            font-size: 23px;
+        }
+
+        .timeline-item p {
+            color: #aaa;
+            line-height: 1.7;
+        }
+
+        /* =========================
+           QUOTE
+        ========================= */
+
+        .quote {
+            text-align: center;
+            background:
+                linear-gradient(rgba(20,5,20,.8), rgba(20,5,20,.8)),
+                radial-gradient(circle, #75234f, #0d0710);
+        }
+
+        .quote-box {
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .quote-box .heart {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+
+        .quote-box p {
+            font-size: 28px;
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        /* =========================
+           REASONS
+        ========================= */
+
+        .reasons {
+            background: #0d0710;
+        }
+
+        .reason-box {
+            max-width: 600px;
+            margin: auto;
+            background: #19101d;
+            border-radius: 25px;
+            padding: 50px 30px;
+            text-align: center;
+        }
+
+        #reasonText {
+            min-height: 80px;
+            font-size: 22px;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        /* =========================
+           FINAL
+        ========================= */
+
+        .final {
+            min-height: 80vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background:
+                radial-gradient(circle, #601d46, transparent 45%),
+                #0d0710;
+        }
+
+        .final-content {
+            max-width: 750px;
+        }
+
+        .final-content .big-heart {
+            font-size: 90px;
+            animation: heartbeat 1.5s infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.15);
+            }
+        }
+
+        .final h2 {
+            font-size: 50px;
+            margin: 25px 0;
+        }
+
+        .final p {
+            color: #ccc;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: #080508;
+            color: #777;
+            font-size: 13px;
+        }
+
+        /* =========================
+           FLOATING HEART
+        ========================= */
+
+        .floating-heart {
+            position: fixed;
+            top: -20px;
+            z-index: 999;
+            pointer-events: none;
+            animation: fall linear forwards;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(110vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media(max-width: 800px) {
+
+            nav {
+                padding: 15px 5%;
+            }
+
+            nav ul {
+                gap: 12px;
+            }
+
+            nav a {
+                font-size: 11px;
+            }
+
+            section {
+                padding: 80px 5%;
+            }
+
+            .about-container {
+                grid-template-columns: 1fr;
+            }
+
+            .memory-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-image {
+                height: 350px;
+            }
+
+            .final h2 {
+                font-size: 38px;
+            }
+
+            .quote-box p {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <nav>
+
+        <div class="logo">
+            Our <span>Story ❤️</span>
+        </div>
+
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#memories">Memories</a></li>
+            <li><a href="#story">Story</a></li>
+            <li><a href="#message">Message</a></li>
+        </ul>
+
+    </nav>
+
+
+    <!-- HERO -->
+
+    <section class="hero" id="home">
+
+        <div class="hero-content">
+
+            <small>Welcome to our little world</small>
+
+            <h1>
+                Our <span>Story</span>
+            </h1>
+
+            <p>
+                Ada banyak cerita yang mungkin tidak bisa
+                dijelaskan hanya dengan kata-kata.
+                Jadi, aku membuat halaman kecil ini
+                untuk menyimpan beberapa di antaranya.
+            </p>
+
+            <a href="#about" class="btn">
+                Mulai Cerita ❤️
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- ABOUT -->
+
+    <section class="about" id="about">
+
+        <div class="section-title">
+
+            <small>ABOUT US</small>
+
+            <h2>Tentang Kita</h2>
+
+        </div>
+
+
+        <div class="about-container">
+
+            <div class="about-image">
+
+                <!--
+                    GANTI BAGIAN INI DENGAN FOTO
+
+                    <img src="foto-kita.jpg">
+                -->
+
+                📸
+
+            </div>
+
+
+            <div class="about-text">
+
+                <h3>Sesederhana Itu ❤️</h3>
+
+                <p>
+                    Tidak ada cerita yang benar-benar sempurna.
+                    Tapi justru dari hal-hal sederhana,
+                    terkadang muncul kenangan yang paling
+                    sulit dilupakan.
+                </p>
+
+                <p>
+                    Website kecil ini dibuat sebagai tempat
+                    untuk menyimpan cerita, kenangan,
+                    dan beberapa kata yang mungkin sulit
+                    disampaikan secara langsung.
+                </p>
+
+                <p>
+                    Semoga setiap kali halaman ini dibuka,
+                    ada sedikit senyum yang ikut muncul.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- MEMORIES -->
+
+    <section class="memories" id="memories">
+
+        <div class="section-title">
+
+            <small>OUR MEMORIES</small>
+
+            <h2>Kenangan Kita</h2>
+
+        </div>
+
+
+        <div class="memory-grid">
+
+
+            <div class="memory-card">
+
+                <div class="memory-photo">
+
+                    <!-- <img src="foto1.jpg"> -->
+
+                    📷
+
+                </div>
+
+                <div class="memory-info">
+
+                    <h3>First Memory</h3>
+
+                    <p>
+                        Salah satu momen yang sederhana,
+                        tapi ternyata menjadi kenangan
+                        yang cukup berarti.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="memory-card">
+
+                <div class="memory-photo">
+
+                    <!-- <img src="foto2.jpg"> -->
+
+                    📷
+
+                </div>
+
+                <div class="memory-info">
+
+                    <h3>Best Moment</h3>
+
+                    <p>
+                        Ada beberapa momen yang ingin
+                        rasanya disimpan lebih lama.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="memory-card">
+
+                <div class="memory-photo">
+
+                    <!-- <img src="foto3.jpg"> -->
+
+                    📷
+
+                </div>
+
+                <div class="memory-info">
+
+                    <h3>Another Story</h3>
+
+                    <p>
+                        Karena setiap perjalanan selalu
+                        memiliki cerita yang berbeda.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- TIMELINE -->
+
+    <section class="timeline-section" id="story">
+
+        <div class="section-title">
+
+            <small>OUR JOURNEY</small>
+
+            <h2>Perjalanan Cerita</h2>
+
+        </div>
+
+
+        <div class="timeline">
+
+
+            <div class="timeline-item">
+
+                <span>01 — Awal</span>
+
+                <h3>Semua Berawal</h3>
+
+                <p>
+                    Dari sebuah pertemuan sederhana,
+                    kemudian menjadi awal dari banyak
+                    cerita lainnya.
+                </p>
+
+            </div>
+
+
+            <div class="timeline-item">
+
+                <span>02 — Mengenal</span>
+
+                <h3>Mulai Mengenal</h3>
+
+                <p>
+                    Semakin banyak berbicara,
+                    semakin banyak cerita yang diketahui.
+                </p>
+
+            </div>
+
+
+            <div class="timeline-item">
+
+                <span>03 — Kenangan</span>
+
+                <h3>Banyak Momen</h3>
+
+                <p>
+                    Ada tawa, ada cerita, ada hari-hari
+                    sederhana yang akhirnya menjadi
+                    sebuah kenangan.
+                </p>
+
+            </div>
+
+
+            <div class="timeline-item">
+
+                <span>04 — Sekarang</span>
+
+                <h3>Masih Menulis Cerita</h3>
+
+                <p>
+                    Dan cerita ini masih terus berjalan.
+                    Belum tahu akan sampai ke mana,
+                    tetapi setiap halaman tetap layak
+                    untuk dinikmati.
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- QUOTE -->
+
+    <section class="quote">
+
+        <div class="quote-box">
+
+            <div class="heart">
+                ❤️
+            </div>
+
+            <p>
+                "Beberapa orang datang ke hidup kita
+                bukan untuk membuat semuanya sempurna,
+                tetapi untuk membuat perjalanan terasa
+                lebih berarti."
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- REASONS -->
+
+    <section class="reasons">
+
+        <div class="section-title">
+
+            <small>A LITTLE SURPRISE</small>
+
+            <h2>Satu Pesan Untukmu</h2>
+
+        </div>
+
+
+        <div class="reason-box">
+
+            <div id="reasonText">
+                Klik tombol di bawah untuk melihat
+                pesan kecil dariku ❤️
+            </div>
+
+            <button class="btn" onclick="nextReason()">
+                Buka Pesan 💌
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- FINAL -->
+
+    <section class="final" id="message">
+
+        <div class="final-content">
+
+            <div class="big-heart">
+                ❤️
+            </div>
+
+            <h2>Terima Kasih</h2>
+
+            <p>
+                Terima kasih sudah menjadi bagian
+                dari cerita ini.
+
+                <br><br>
+
+                Mungkin website ini sederhana,
+                tetapi setiap kata di dalamnya dibuat
+                dengan niat yang baik.
+
+                <br><br>
+
+                Semoga selalu ada alasan untuk tersenyum.
+            </p>
+
+            <button class="btn" onclick="makeHearts()">
+                Kirim Banyak Cinta ❤️
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        Made with ❤️ using HTML, CSS & JavaScript
+
+    </footer>
+
+
+    <script>
+
+        /* =========================
+           PESAN RANDOM
+        ========================= */
+
+        const messages = [
+
+            "Semoga hari ini kamu menemukan alasan untuk tersenyum. ❤️",
+
+            "Terima kasih untuk setiap cerita dan momen sederhana yang pernah ada. 💕",
+
+            "Tidak semua hal harus sempurna untuk menjadi berarti. 🌷",
+
+            "Kalau hari ini terasa berat, semoga besok menjadi sedikit lebih ringan. ❤️",
+
+            "Jangan lupa bahwa kamu berhak mendapatkan banyak hal baik dalam hidup. ✨",
+
+            "Satu hal yang pasti: cerita yang baik selalu layak untuk dikenang. 💌"
+
+        ];
+
+
+        let messageIndex = 0;
+
+
+        function nextReason() {
+
+            document.getElementById("reasonText").innerText =
+                messages[messageIndex];
+
+            messageIndex++;
+
+            if (messageIndex >= messages.length) {
+                messageIndex = 0;
+            }
+
+            makeHearts();
+
+        }
+
+
+        /* =========================
+           FLOATING HEARTS
+        ========================= */
+
+        function createHeart() {
+
+            const heart = document.createElement("div");
+
+            heart.className = "floating-heart";
+
+            heart.innerHTML = Math.random() > 0.5 ? "❤️" : "💕";
+
+            heart.style.left =
+                Math.random() * 100 + "vw";
+
+            heart.style.fontSize =
+                (12 + Math.random() * 22) + "px";
+
+            heart.style.animationDuration =
+                (3 + Math.random() * 5) + "s";
+
+            document.body.appendChild(heart);
+
+
+            setTimeout(() => {
+
+                heart.remove();
+
+            }, 8000);
+
+        }
+
+
+        function makeHearts() {
+
+            for (let i = 0; i < 30; i++) {
+
+                setTimeout(() => {
+
+                    createHeart();
+
+                }, i * 80);
+
+            }
+
+        }
+
+
+        /* =========================
+           AUTO HEART
+        ========================= */
+
+        setInterval(() => {
+
+            createHeart();
+
+        }, 1200);
+
+    </script>
+
+</body>
+</html>
+```

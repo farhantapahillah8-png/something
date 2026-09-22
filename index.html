@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untuk Kamu ❤️</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #1a001f, #4b164c, #8b285f);
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* HATI JATUH */
+        .heart {
+            position: fixed;
+            top: -20px;
+            font-size: 20px;
+            animation: jatuh linear forwards;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        @keyframes jatuh {
+            to {
+                transform: translateY(110vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* HALAMAN PEMBUKA */
+        .opening {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .opening-box {
+            max-width: 600px;
+        }
+
+        .opening h1 {
+            font-size: 42px;
+            margin-bottom: 15px;
+        }
+
+        .opening p {
+            font-size: 18px;
+            opacity: 0.9;
+            margin-bottom: 35px;
+        }
+
+        /* AMPLOP */
+        .envelope {
+            width: 220px;
+            height: 150px;
+            background: #f5d0dc;
+            margin: auto;
+            position: relative;
+            cursor: pointer;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,.4);
+            transition: .3s;
+        }
+
+        .envelope:hover {
+            transform: scale(1.08);
+        }
+
+        .envelope::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-left: 110px solid transparent;
+            border-right: 110px solid transparent;
+            border-top: 85px solid #e9a8bd;
+        }
+
+        .envelope-heart {
+            position: absolute;
+            left: 50%;
+            top: 55%;
+            transform: translate(-50%, -50%);
+            font-size: 40px;
+            z-index: 2;
+        }
+
+        .click-text {
+            margin-top: 20px;
+            font-size: 15px;
+        }
+
+        /* KONTEN */
+        #content {
+            display: none;
+            min-height: 100vh;
+            padding: 60px 20px;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .title {
+            font-size: 42px;
+            margin-bottom: 15px;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            opacity: .85;
+            margin-bottom: 40px;
+        }
+
+        /* SURAT */
+        .letter {
+            background: rgba(255,255,255,.95);
+            color: #4a1c36;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: left;
+            box-shadow: 0 15px 40px rgba(0,0,0,.3);
+            margin-bottom: 50px;
+            line-height: 1.8;
+        }
+
+        .letter h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .letter p {
+            margin-bottom: 15px;
+        }
+
+        /* GALERI */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 50px;
+        }
+
+        .photo {
+            height: 220px;
+            border-radius: 15px;
+            overflow: hidden;
+            background: rgba(255,255,255,.15);
+            border: 2px solid rgba(255,255,255,.3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .photo span {
+            opacity: .7;
+        }
+
+        /* TOMBOL */
+        button {
+            border: none;
+            padding: 14px 28px;
+            border-radius: 30px;
+            background: #ff4f91;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: .3s;
+            margin: 8px;
+        }
+
+        button:hover {
+            transform: scale(1.07);
+            background: #ff78a9;
+        }
+
+        /* PESAN AKHIR */
+        #finalMessage {
+            display: none;
+            margin-top: 30px;
+            padding: 30px;
+            background: rgba(255,255,255,.12);
+            border-radius: 20px;
+            font-size: 22px;
+            line-height: 1.7;
+        }
+
+        .big-heart {
+            font-size: 70px;
+            animation: denyut 1s infinite;
+        }
+
+        @keyframes denyut {
+            0%, 100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.2);
+            }
+        }
+
+        footer {
+            margin-top: 60px;
+            opacity: .6;
+            font-size: 14px;
+        }
+
+        @media(max-width:600px) {
+            .opening h1,
+            .title {
+                font-size: 32px;
+            }
+
+            .letter {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HALAMAN PEMBUKA -->
+    <section class="opening" id="opening">
+
+        <div class="opening-box">
+
+            <h1>💌 Ada Sesuatu Untukmu</h1>
+
+            <p>
+                Aku punya sedikit sesuatu yang ingin kusampaikan...
+            </p>
+
+            <div class="envelope" onclick="openLetter()">
+                <div class="envelope-heart">❤️</div>
+            </div>
+
+            <div class="click-text">
+                Klik amplopnya
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- KONTEN UTAMA -->
+    <section id="content">
+
+        <div class="container">
+
+            <h1 class="title">
+                Untuk Kamu ❤️
+            </h1>
+
+            <p class="subtitle">
+                Sebuah pesan kecil yang dibuat khusus untukmu.
+            </p>
+
+
+            <!-- SURAT -->
+            <div class="letter">
+
+                <h2>💌 Sebuah Surat</h2>
+
+                <p>
+                    Hai kamu...
+                </p>
+
+                <p>
+                    Mungkin aku bukan orang yang paling pandai
+                    mengungkapkan perasaan lewat kata-kata.
+                    Jadi kali ini aku mencoba menyampaikannya
+                    lewat sesuatu yang sederhana.
+                </p>
+
+                <p>
+                    Terima kasih sudah menjadi seseorang yang
+                    begitu berarti. Terima kasih untuk setiap
+                    senyum, cerita, dan waktu yang pernah kita
+                    bagi bersama.
+                </p>
+
+                <p>
+                    Aku tidak tahu bagaimana cerita kita akan
+                    berjalan ke depannya. Tapi untuk saat ini,
+                    aku hanya ingin menikmati setiap momen
+                    yang ada.
+                </p>
+
+                <p>
+                    Semoga kamu selalu bahagia dan selalu
+                    menemukan alasan untuk tersenyum.
+                </p>
+
+                <p style="text-align:center;">
+                    <b>❤️ Dari seseorang yang selalu mengingatmu ❤️</b>
+                </p>
+
+            </div>
+
+
+            <!-- GALERI -->
+            <h2 style="margin-bottom:25px;">
+                📸 Kenangan
+            </h2>
+
+            <div class="gallery">
+
+                <div class="photo">
+                    <span>Foto 1 📷</span>
+                    <!--
+                    Ganti dengan:
+                    <img src="foto1.jpg">
+                    -->
+                </div>
+
+                <div class="photo">
+                    <span>Foto 2 📷</span>
+                    <!--
+                    Ganti dengan:
+                    <img src="foto2.jpg">
+                    -->
+                </div>
+
+                <div class="photo">
+                    <span>Foto 3 📷</span>
+                    <!--
+                    Ganti dengan:
+                    <img src="foto3.jpg">
+                    -->
+                </div>
+
+            </div>
+
+
+            <!-- TOMBOL -->
+            <button onclick="showMessage()">
+                💖 Klik di sini
+            </button>
+
+            <button onclick="moreHearts()">
+                ❤️ Tambah Hati
+            </button>
+
+
+            <!-- PESAN AKHIR -->
+            <div id="finalMessage">
+
+                <div class="big-heart">
+                    ❤️
+                </div>
+
+                <p>
+                    Kalau suatu hari kamu lupa betapa
+                    berartinya dirimu...
+                </p>
+
+                <p>
+                    buka halaman ini lagi.
+                </p>
+
+                <p>
+                    Karena akan selalu ada seseorang yang
+                    berharap kamu baik-baik saja.
+                </p>
+
+                <br>
+
+                <b>
+                    Semoga senyummu selalu menjadi
+                    hal yang paling indah. ❤️
+                </b>
+
+            </div>
+
+
+            <footer>
+                Dibuat dengan ❤️ menggunakan HTML, CSS & JavaScript
+            </footer>
+
+        </div>
+
+    </section>
+
+
+    <script>
+
+        // BUKA SURAT
+        function openLetter() {
+
+            document.getElementById("opening").style.display = "none";
+
+            document.getElementById("content").style.display = "block";
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
+            moreHearts();
+
+        }
+
+
+        // MEMBUAT HATI JATUH
+        function createHeart() {
+
+            const heart = document.createElement("div");
+
+            heart.classList.add("heart");
+
+            heart.innerHTML = "❤️";
+
+            heart.style.left = Math.random() * 100 + "vw";
+
+            heart.style.animationDuration =
+                (3 + Math.random() * 4) + "s";
+
+            heart.style.fontSize =
+                (12 + Math.random() * 20) + "px";
+
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 7000);
+        }
+
+
+        // TAMBAH BANYAK HATI
+        function moreHearts() {
+
+            for (let i = 0; i < 25; i++) {
+
+                setTimeout(() => {
+                    createHeart();
+                }, i * 100);
+
+            }
+
+        }
+
+
+        // PESAN AKHIR
+        function showMessage() {
+
+            const message =
+                document.getElementById("finalMessage");
+
+            message.style.display = "block";
+
+            message.scrollIntoView({
+                behavior: "smooth"
+            });
+
+            moreHearts();
+
+        }
+
+    </script>
+
+</body>
+</html>
